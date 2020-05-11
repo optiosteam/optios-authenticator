@@ -1,0 +1,23 @@
+{
+    "name": "optios/authenticator",
+    "description": "Authentication and authorization library for optios/api",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Thomas Vanderhaeghen",
+            "email": "thomas@optios.net"
+        }
+    ],
+    "require": {
+        "beberlei/assert": "^3.2"
+    },
+    "require-dev": {
+        "ramsey/uuid": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "OptiosAuthenticator\\": "src/",
+            "Tests\\OptiosAuthenticator\\": "tests/"
+        }
+    }
+}
