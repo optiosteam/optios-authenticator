@@ -21,6 +21,14 @@ class Token
      * @var string
      */
     private $organisationUuid;
+    /**
+     * @var string
+     */
+    private $establishmentUuid;
+    /**
+     * @var int
+     */
+    private $establishmentId;
 
     /**
      * Token constructor.
@@ -28,15 +36,19 @@ class Token
      * @param string    $bearerToken
      * @param \DateTime $expiresAt
      * @param string    $organisationUuid
+     * @param string    $establishmentUuid
+     * @param int       $establishmentId
      */
-    public function __construct(string $bearerToken, \DateTime $expiresAt, string $organisationUuid)
+    public function __construct(string $bearerToken, \DateTime $expiresAt, string $organisationUuid, string $establishmentUuid, int $establishmentId)
     {
         Assert::that($bearerToken)->uuid();
         Assert::that($organisationUuid)->uuid();
 
-        $this->bearerToken      = $bearerToken;
-        $this->expiresAt        = $expiresAt;
-        $this->organisationUuid = $organisationUuid;
+        $this->bearerToken       = $bearerToken;
+        $this->expiresAt         = $expiresAt;
+        $this->organisationUuid  = $organisationUuid;
+        $this->establishmentUuid = $establishmentUuid;
+        $this->establishmentId   = $establishmentId;
     }
 
     /**
@@ -61,5 +73,21 @@ class Token
     public function getOrganisationUuid(): string
     {
         return $this->organisationUuid;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEstablishmentUuid(): string
+    {
+        return $this->establishmentUuid;
+    }
+
+    /**
+     * @return int
+     */
+    public function getEstablishmentId(): int
+    {
+        return $this->establishmentId;
     }
 }

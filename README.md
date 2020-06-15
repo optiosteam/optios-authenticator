@@ -18,7 +18,7 @@ Add the following to your composer.json
 ## Usage
 
 ```
-$provider = new \OptiosAuthenticator\Provider\MmeoryProvider();
+$provider      = new \OptiosAuthenticator\Provider\MemoryProvider();
 $authenticator = new \OptiosAuthenticator\Authenticator();
 
 $bearerToken = $request->headers->get('X-Auth-Token');
