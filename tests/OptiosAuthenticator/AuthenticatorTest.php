@@ -28,8 +28,21 @@ class AuthenticatorTest extends TestCase
         $this->bearerToken        = Uuid::uuid4()->toString();
         $this->expiredBearerToken = Uuid::uuid4()->toString();
 
-        $token        = new Token($this->bearerToken, new \DateTime('+1 hour'), Uuid::uuid4()->toString());
-        $expiredToken = new Token($this->expiredBearerToken, new \DateTime('-1 hour'), Uuid::uuid4()->toString());
+        $token = new Token(
+            $this->bearerToken,
+            new \DateTime('+1 hour'),
+            Uuid::uuid4()->toString(),
+            Uuid::uuid4()->toString(),
+            1
+        );
+
+        $expiredToken = new Token(
+            $this->expiredBearerToken,
+            new \DateTime('-1 hour'),
+            Uuid::uuid4()->toString(),
+            Uuid::uuid4()->toString(),
+            2
+        );
 
         $this->authenticator = new Authenticator(new MemoryProvider([$token, $expiredToken]));
 

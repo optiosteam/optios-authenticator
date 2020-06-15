@@ -17,10 +17,12 @@ class TokenTest extends TestCase
         $organisationUuid = Uuid::uuid4();
         $expiresAt        = new \DateTime('+1 hour');
 
-        $token = new Token($uuid->toString(), $expiresAt, $organisationUuid->toString());
+        $token = new Token($uuid->toString(), $expiresAt, $organisationUuid->toString(), $organisationUuid->toString(), 1);
 
         $this->assertFalse($token->isExpired());
-        $this->assertEquals($token->getBearerToken(), $uuid->toString());
-        $this->assertEquals($token->getOrganisationUuid(), $organisationUuid->toString());
+        $this->assertEquals($uuid->toString(), $token->getBearerToken());
+        $this->assertEquals($organisationUuid->toString(), $token->getOrganisationUuid());
+        $this->assertEquals($organisationUuid->toString(), $token->getEstablishmentUuid());
+        $this->assertEquals(1, $token->getEstablishmentId());
     }
 }

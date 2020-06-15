@@ -23,7 +23,13 @@ class MemoryProviderTest extends TestCase
     {
         $this->bearerToken = Uuid::uuid4()->toString();
 
-        $token = new Token($this->bearerToken, new \DateTime('+1 hour'), Uuid::uuid4()->toString());
+        $token = new Token(
+            $this->bearerToken,
+            new \DateTime('+1 hour'),
+            Uuid::uuid4()->toString(),
+            Uuid::uuid4()->toString(),
+            1
+        );
 
         $this->provider = new MemoryProvider([$token]);
 
