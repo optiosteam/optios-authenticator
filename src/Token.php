@@ -51,6 +51,19 @@ class Token
         $this->establishmentId   = $establishmentId;
     }
 
+    public static function create($array)
+    {
+        $self = new self(
+            $array['bearer_token'] ?? $array['access_token'],
+            $array['expires_at'],
+            $array['organisation_uuid'],
+            $array['establishment_uuid'],
+            $array['establishment_id']
+        );
+
+        return $self;
+    }
+
     /**
      * @return bool
      */
