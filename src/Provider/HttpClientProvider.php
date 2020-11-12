@@ -2,7 +2,6 @@
 
 namespace OptiosAuthenticator\Provider;
 
-use OptiosAuthenticator\AuthenticationException;
 use OptiosAuthenticator\Token;
 use Symfony\Component\HttpClient\HttpClient;
 

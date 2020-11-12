@@ -55,10 +55,10 @@ class Token
     {
         $self = new self(
             $array['bearer_token'] ?? $array['access_token'],
-            $array['expires_at'],
+            \DateTime::createFromFormat('Y-m-d H:i:s', $array['expires_at']),
             $array['organisation_uuid'],
             $array['establishment_uuid'],
-            $array['establishment_id']
+            (int) $array['establishment_id']
         );
 
         return $self;
