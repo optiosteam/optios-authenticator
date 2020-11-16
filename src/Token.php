@@ -55,7 +55,7 @@ class Token
     {
         $self = new self(
             $array['bearer_token'] ?? $array['access_token'],
-            \DateTime::createFromFormat('Y-m-d H:i:s', $array['expires_at']),
+            new \DateTime(sprintf('%+d seconds', $array['expires_in'])),
             $array['organisation_uuid'],
             $array['establishment_uuid'],
             (int) $array['establishment_id']
