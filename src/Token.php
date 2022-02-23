@@ -1,4 +1,5 @@
-<?php declare(strict_types = 1);
+<?php
+declare(strict_types=1);
 
 namespace OptiosAuthenticator;
 
@@ -31,16 +32,27 @@ class Token
     private $establishmentId;
 
     /**
+     * @var string
+     */
+    private $locale;
+
+    /**
      * Token constructor.
      *
-     * @param string    $bearerToken
+     * @param string $bearerToken
      * @param \DateTime $expiresAt
-     * @param string    $organisationUuid
-     * @param string    $establishmentUuid
-     * @param int       $establishmentId
+     * @param string $organisationUuid
+     * @param string $establishmentUuid
+     * @param int $establishmentId
      */
-    public function __construct(string $bearerToken, \DateTime $expiresAt, string $organisationUuid, string $establishmentUuid, int $establishmentId)
-    {
+    public function __construct(
+        string $bearerToken,
+        \DateTime $expiresAt,
+        string $organisationUuid,
+        string $establishmentUuid,
+        int $establishmentId,
+        string $locale
+    ) {
         Assert::that($bearerToken)->uuid();
         Assert::that($organisationUuid)->uuid();
 
@@ -49,6 +61,7 @@ class Token
         $this->organisationUuid  = $organisationUuid;
         $this->establishmentUuid = $establishmentUuid;
         $this->establishmentId   = $establishmentId;
+        $this->locale            = $locale;
     }
 
     public static function create($array)
@@ -58,7 +71,8 @@ class Token
             new \DateTime(sprintf('%+d seconds', $array['expires_in'])),
             $array['organisation_uuid'],
             $array['establishment_uuid'],
-            (int) $array['establishment_id']
+            (int)$array['establishment_id'],
+            $array['locale']
         );
 
         return $self;
@@ -102,5 +116,13 @@ class Token
     public function getEstablishmentId(): int
     {
         return $this->establishmentId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLocale(): string
+    {
+        return $this->locale;
     }
 }
