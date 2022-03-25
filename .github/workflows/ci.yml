@@ -8,11 +8,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - name: Install dependencies
-        uses: php-actions/composer@v6
+
+      - name: Setup PHP with PECL extension
+        uses: shivammathur/setup-php@v2
         with:
-          php_version: "7.4"
-          version: 2
+          php-version: '7.3
+
+      - name: Install composer
+        run: composer install --no-progress --prefer-dist
+
       - name: Run phpunit
         env:
           APP_ENV: test
