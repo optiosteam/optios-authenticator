@@ -33,7 +33,8 @@ class AuthenticatorTest extends TestCase
             new \DateTime('+1 hour'),
             Uuid::uuid4()->toString(),
             Uuid::uuid4()->toString(),
-            1
+            1,
+            'nl'
         );
 
         $expiredToken = new Token(
@@ -41,7 +42,8 @@ class AuthenticatorTest extends TestCase
             new \DateTime('-1 hour'),
             Uuid::uuid4()->toString(),
             Uuid::uuid4()->toString(),
-            2
+            2,
+            'nl'
         );
 
         $this->authenticator = new Authenticator(new MemoryProvider([$token, $expiredToken]));

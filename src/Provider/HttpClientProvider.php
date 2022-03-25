@@ -53,7 +53,6 @@ class HttpClientProvider implements ProviderInterface
             $options
         );
 
-
         if ($response->getStatusCode() !== 200) {
             return null;
         }
