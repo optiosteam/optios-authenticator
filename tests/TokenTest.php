@@ -1,4 +1,5 @@
-<?php declare(strict_types = 1);
+<?php
+declare(strict_types=1);
 
 namespace Tests\OptiosAuthenticator;
 
@@ -13,11 +14,18 @@ class TokenTest extends TestCase
      */
     public function itCanConstruct()
     {
-        $uuid             = Uuid::uuid4();
+        $uuid = Uuid::uuid4();
         $organisationUuid = Uuid::uuid4();
-        $expiresAt        = new \DateTime('+1 hour');
+        $expiresAt = new \DateTime('+1 hour');
 
-        $token = new Token($uuid->toString(), $expiresAt, $organisationUuid->toString(), $organisationUuid->toString(), 1);
+        $token = new Token(
+            $uuid->toString(),
+            $expiresAt,
+            $organisationUuid->toString(),
+            $organisationUuid->toString(),
+            1,
+            'nl'
+        );
 
         $this->assertFalse($token->isExpired());
         $this->assertEquals($uuid->toString(), $token->getBearerToken());

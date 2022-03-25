@@ -28,7 +28,8 @@ class MemoryProviderTest extends TestCase
             new \DateTime('+1 hour'),
             Uuid::uuid4()->toString(),
             Uuid::uuid4()->toString(),
-            1
+            1,
+            'nl'
         );
 
         $this->provider = new MemoryProvider([$token]);
