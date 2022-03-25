@@ -8,7 +8,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - uses: php-actions/composer@v1
+      - name: Install dependencies
+        uses: php-actions/composer@v6
+        with:
+          php_version: "7.3"
+          version: 2
       - name: Run phpunit
         env:
           APP_ENV: test
